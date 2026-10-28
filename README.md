@@ -8,9 +8,9 @@
 
 ## 頁面
 
-- 首頁：獨立複利試算區塊（逐年追加投入、報酬率、通膨與購買力）
+- 首頁的「複利試算」卡片：點擊後開啟獨立試算頁
 - `etf-tax/`：免登入 ETF 歷史退稅比例查詢
 - `dividend-calculator.html`：台股/美股配息估算
-- `compound-calculator.html`：台股 ETF 歷史回測
+- `compound-calculator.html`：複利試算與台股 ETF 歷史回測
 
 功能盤點、搬移界線與待確認風險見 [MIGRATION_PLAN.md](MIGRATION_PLAN.md)。

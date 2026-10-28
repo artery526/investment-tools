@@ -30,7 +30,7 @@ jobs:
       - name: Assemble public site
         run: |
           mkdir -p _site/etf-tax
-          cp index.html compound-home.css compound-calculator.html compound-calculator.js compound-etf-backtest.js dividend-calculator.html dividend-calculator.js public-tax-lookup.js _site/
+          cp index.html compound-calculator.html compound-calculator.js compound-etf-backtest.js dividend-calculator.html dividend-calculator.js public-tax-lookup.js _site/
           cp etf-tax/index.html _site/etf-tax/index.html
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5

@@ -6,8 +6,6 @@
   <meta name="theme-color" content="#071521">
   <meta name="description" content="免費、免登入的 ETF 與投資試算工具。輸入只在目前瀏覽器頁面計算。">
   <title>投資工具</title>
-  <link rel="stylesheet" href="compound-home.css">
-  <script src="compound-calculator.js" defer></script>
   <style>
     :root{color-scheme:dark;--bg:#06121b;--panel:#0b1e2c;--line:rgba(98,201,232,.25);--cyan:#8fe4ff;--muted:#91afbe;--green:#5de1a2;--sans:system-ui,-apple-system,"Segoe UI",sans-serif}
     *{box-sizing:border-box}body{min-height:100vh;margin:0;background:radial-gradient(ellipse at top,#12334a 0,#071521 55%,#040b11 100%);color:#e8f9ff;font-family:var(--sans)}header{padding:clamp(28px,7vw,72px) max(20px,calc((100vw - 1040px)/2)) 26px}header p{margin:0 0 8px;color:#65c9ed;font-size:11px;font-weight:800;letter-spacing:2px}h1{margin:0;font-size:clamp(30px,6vw,48px)}header .intro{max-width:680px;color:var(--muted);line-height:1.8}main{width:min(1040px,calc(100% - 32px));margin:0 auto 60px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}.card{display:flex;min-height:190px;flex-direction:column;padding:20px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(155deg,rgba(16,38,58,.96),rgba(7,21,33,.98) 68%);color:inherit;text-decoration:none;transition:transform .15s,border-color .15s}.card:hover,.card:focus-visible{transform:translateY(-2px);border-color:var(--cyan);outline:none}.icon{font-size:25px}.card h2{margin:12px 0 5px;font-size:19px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}.card span{margin-top:auto;padding-top:16px;color:var(--green);font-size:13px;font-weight:800}.planned{opacity:.65}.privacy{margin:20px 2px 0;color:#789aaa;font-size:12px;line-height:1.7}
@@ -16,36 +14,10 @@
 <body>
   <header><p>INDEPENDENT INVESTMENT TOOLS</p><h1>投資工具</h1><p class="intro">把配息、複利與歷史回測放在一個免登入的公開工具站。試算輸入只在目前頁面處理，不會寫入帳戶或資料庫。</p></header>
   <main>
-    <section class="compound-home-section" aria-labelledby="compound-home-title">
-      <div class="compound-home-heading"><div><p>COMPOUND CALCULATOR</p><h2 id="compound-home-title">複利試算</h2></div><span aria-hidden="true">📈</span></div>
-      <div class="compound-home-inputs">
-        <label>初始投入本金（元）<input id="compound-interest-principal" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="18" value="1000000"></label>
-        <label>年通膨率（%）<input id="compound-interest-inflation" type="number" inputmode="decimal" min="-99.9" max="1000" step="0.1" value="2"></label>
-        <label>試算年數（1–40 年）<input id="compound-interest-years" type="number" inputmode="numeric" min="1" max="40" step="1" value="20"></label>
-      </div>
-      <label class="compound-home-carry"><input id="compound-interest-carry-forward" type="checkbox" checked>後續年度沿用上一年的追加投入金額</label>
-      <div class="compound-home-summary" id="compound-interest-summary" aria-live="polite"></div>
-      <div class="compound-home-tools" aria-label="年化報酬率批次操作">
-        <span>年化報酬率：</span>
-        <button id="compound-interest-rate-batch-toggle" type="button" aria-label="設定所有年度年化報酬率" title="設定所有年度年化報酬率" aria-expanded="false">✎</button>
-        <button id="compound-interest-rate-clear" class="clear" type="button" aria-label="清除所有年度年化報酬率" title="清除所有年度年化報酬率">×</button>
-        <form id="compound-interest-rate-batch-form" class="compound-home-rate-form">
-          <label for="compound-interest-rate-batch-value">套用至各年（%）</label>
-          <input id="compound-interest-rate-batch-value" type="number" inputmode="decimal" min="-100" max="1000" step="0.1" placeholder="例如 5" aria-label="要套用的年化報酬率百分比">
-          <button type="submit">套用</button>
-        </form>
-      </div>
-      <div class="compound-home-table-wrap">
-        <table class="compound-home-table">
-          <thead><tr><th>年度</th><th>本年追加投入</th><th>年化報酬率（%）</th><th>期末金額</th><th>通膨後購買力</th><th>本年度報酬</th></tr></thead>
-          <tbody id="compound-interest-rows"></tbody>
-        </table>
-      </div>
-      <p class="compound-home-note">各年追加投入於當年報酬計算前加入本金；通膨以固定年率逐年複利折算為今日幣值。未納入費用與稅金，實際報酬與通膨不保證固定。</p>
-    </section>
     <section class="grid" aria-label="其他投資工具">
       <a class="card" href="etf-tax/"><div class="icon" aria-hidden="true">💹</div><h2>美股 ETF 退稅查詢</h2><p>查看彙整的歷史退稅比例與來源年份。</p><span>開啟查詢 →</span></a>
       <a class="card" href="dividend-calculator.html"><div class="icon" aria-hidden="true">🪙</div><h2>配息試算</h2><p>依投入金額、價格、單次配息、頻率及匯率估算。</p><span>開始試算 →</span></a>
+      <a class="card" href="compound-calculator.html"><div class="icon" aria-hidden="true">📈</div><h2>複利試算</h2><p>估算逐年投入、報酬率與通膨後購買力。</p><span>開啟試算 →</span></a>
       <a class="card" href="compound-calculator.html#etf-backtest-panel"><div class="icon" aria-hidden="true">📊</div><h2>台股 ETF 歷史回測</h2><p>依證交所歷史資料比較單筆投入與定期投入策略。</p><span>開啟回測 →</span></a>
       <article class="card planned" aria-label="報酬比較規劃中"><div class="icon" aria-hidden="true">⚖️</div><h2>報酬比較</h2><p>預留未來比較工具入口。</p><span>規劃中</span></article>
     </section>
