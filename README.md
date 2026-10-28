@@ -9,7 +9,7 @@
 ## 頁面
 
 - 首頁的「複利試算」卡片：點擊後開啟獨立試算頁
-- `etf-backtest.html`：上市 ETF 歷史回測
+- `etf-backtest.html`：上市 ETF 歷史回測與重大事件對照
 - `etf-tax/`：免登入 ETF 歷史退稅比例查詢
 - `dividend-calculator.html`：台股/美股配息估算
 - `compound-calculator.html`：複利試算
