@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071521">
+  <meta name="description" content="免費、免登入的 ETF 與投資試算工具。輸入只在目前瀏覽器頁面計算。">
+  <title>投資工具</title>
+  <style>
+    :root{color-scheme:dark;--bg:#06121b;--panel:#0b1e2c;--line:rgba(98,201,232,.25);--cyan:#8fe4ff;--muted:#91afbe;--green:#5de1a2;--sans:system-ui,-apple-system,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}body{min-height:100vh;margin:0;background:radial-gradient(ellipse at top,#12334a 0,#071521 55%,#040b11 100%);color:#e8f9ff;font-family:var(--sans)}header{padding:clamp(28px,7vw,72px) max(20px,calc((100vw - 1040px)/2)) 26px}header p{margin:0 0 8px;color:#65c9ed;font-size:11px;font-weight:800;letter-spacing:2px}h1{margin:0;font-size:clamp(30px,6vw,48px)}header .intro{max-width:680px;color:var(--muted);line-height:1.8}main{width:min(1040px,calc(100% - 32px));margin:0 auto 60px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}.card{display:flex;min-height:190px;flex-direction:column;padding:20px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(155deg,rgba(16,38,58,.96),rgba(7,21,33,.98) 68%);color:inherit;text-decoration:none;transition:transform .15s,border-color .15s}.card:hover,.card:focus-visible{transform:translateY(-2px);border-color:var(--cyan);outline:none}.icon{font-size:25px}.card h2{margin:12px 0 5px;font-size:19px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}.card span{margin-top:auto;padding-top:16px;color:var(--green);font-size:13px;font-weight:800}.planned{opacity:.65}.privacy{margin:20px 2px 0;color:#789aaa;font-size:12px;line-height:1.7}
+  </style>
+</head>
+<body>
+  <header><p>INDEPENDENT INVESTMENT TOOLS</p><h1>投資工具</h1><p class="intro">把配息、複利與歷史回測放在一個免登入的公開工具站。試算輸入只在目前頁面處理，不會寫入帳戶或資料庫。</p></header>
+  <main>
+    <section class="grid" aria-label="投資工具清單">
+      <a class="card" href="etf-tax/"><div class="icon" aria-hidden="true">💹</div><h2>美股 ETF 退稅查詢</h2><p>查看彙整的歷史退稅比例與來源年份。</p><span>開啟查詢 →</span></a>
+      <article class="card planned" aria-label="美股 ETF 配息查詢規劃中"><div class="icon" aria-hidden="true">🗓️</div><h2>美股 ETF 配息查詢</h2><p>公開資料來源與涵蓋交易所尚待確認。</p><span>規劃中</span></article>
+      <a class="card" href="dividend-calculator.html"><div class="icon" aria-hidden="true">🪙</div><h2>配息試算</h2><p>依投入金額、價格、單次配息、頻率及匯率估算。</p><span>開始試算 →</span></a>
+      <a class="card" href="compound-calculator.html"><div class="icon" aria-hidden="true">📈</div><h2>複利與台股 ETF 回測</h2><p>複利推估，或以證交所歷史資料比較三種投入與配息策略。</p><span>開啟試算 →</span></a>
+      <article class="card planned" aria-label="報酬比較規劃中"><div class="icon" aria-hidden="true">⚖️</div><h2>報酬比較</h2><p>預留未來比較工具入口。</p><span>規劃中</span></article>
+    </section>
+    <p class="privacy">工具提供估算與歷史資料整理，並非投資、稅務或法律建議。行情與配息資料可能延遲或不完整，請以官方及券商資料核對。</p>
+  </main>
+</body>
+</html>
