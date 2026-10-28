@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071521">
+  <meta name="description" content="使用證交所資料回測上市 ETF 的單筆與定期投入策略。">
+  <title>台股 ETF 歷史回測（上市 ETF）｜財商工具庫</title>
+  <style>
+    :root{color-scheme:dark;--line:rgba(98,201,232,.23);--cyan:#8fe4ff;--muted:#91afbe;--green:#5de1a2;--red:#ff8b8b;--sans:system-ui,-apple-system,"Segoe UI",sans-serif;--mono:ui-monospace,"Cascadia Mono",Consolas,monospace}
+    *{box-sizing:border-box}
+    body{min-height:100vh;margin:0;background:radial-gradient(ellipse at top,#12334a 0,#071521 55%,#040b11 100%);color:#e8f9ff;font-family:var(--sans)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px max(18px,calc((100vw - 1100px)/2));border-bottom:1px solid var(--line);background:rgba(5,20,31,.88)}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}.brand-icon{flex:none;font-size:25px}.brand-title{margin:0;color:#e8f9ff;font-size:clamp(17px,3vw,22px);font-weight:900;line-height:1.45}
+    .back-link{flex:none;padding:9px 13px;border:1px solid rgba(143,228,255,.45);border-radius:9px;background:#0a1a27;color:#bcefff;font:700 13px var(--sans);text-decoration:none;white-space:nowrap}.back-link:hover,.back-link:focus-visible{border-color:var(--cyan);outline:none}
+    main{width:min(1100px,calc(100% - 32px));margin:24px auto 40px}
+    .calculator-card{padding:clamp(16px,3vw,24px);border:1px solid rgba(98,201,232,.36);border-radius:16px;background:linear-gradient(155deg,rgba(16,38,58,.96),rgba(7,21,33,.98) 68%);box-shadow:0 20px 60px rgba(0,0,0,.28)}
+    .intro{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.8}
+    .backtest-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .backtest-form label{display:grid;min-width:0;gap:7px;color:#a5c2cf;font-size:13px;font-weight:700}
+    .backtest-form input,.backtest-form select{width:100%;min-width:0;min-height:43px;padding:10px;border:1px solid #29495f;border-radius:8px;background:#071521;color:#e8f9ff;font:700 15px var(--mono)}
+    .backtest-form input:focus,.backtest-form select:focus{border-color:#71d8f7;outline:2px solid rgba(113,216,247,.2)}
+    .backtest-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0 10px}
+    .backtest-button{min-height:42px;padding:10px 16px;border:1px solid rgba(98,201,232,.45);border-radius:8px;background:#12374a;color:#c9f5ff;font:800 14px var(--sans);cursor:pointer}
+    .backtest-button:hover,.backtest-button:focus-visible{border-color:var(--cyan);outline:none}.backtest-button:disabled{opacity:.6;cursor:wait}
+    .backtest-status{color:#a5c2cf;font-size:13px;line-height:1.6}
+    .summary{margin:12px 0;padding:13px 15px;border:1px solid var(--line);border-radius:10px;background:rgba(3,18,29,.72);color:#bcefff;font-size:14px;font-weight:750;line-height:1.7}
+    .strategy-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+    .strategy-card{padding:14px;border:1px solid var(--line);border-radius:10px;background:rgba(3,18,29,.6)}
+    .strategy-card h3{margin:0 0 8px;color:#bcefff;font-size:14px}.strategy-card strong{display:block;color:var(--green);font:800 20px var(--mono)}.strategy-card p{margin:6px 0 0;color:#91afbe;font-size:12px;line-height:1.7}
+    .chart-wrap{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden}.chart-wrap svg{display:block;width:100%;height:auto;min-height:170px}
+    .chart-legend{display:flex;gap:14px;flex-wrap:wrap;color:#a5c2cf;font-size:12px}.chart-legend span:before{content:"";display:inline-block;width:10px;height:3px;margin:0 5px 3px 0;background:var(--series-color)}
+    .notice{margin:16px 0 0;color:#789aaa;font-size:12px;line-height:1.8}
+    @media(max-width:760px){.backtest-form{grid-template-columns:repeat(2,minmax(0,1fr))}.strategy-grid{grid-template-columns:1fr}main{margin:16px auto 28px}}
+    @media(max-width:460px){.topbar{align-items:flex-start;flex-wrap:wrap;padding:12px 14px}.brand{flex:1 1 100%}.back-link{margin-left:auto}main{width:calc(100% - 20px)}.backtest-form{grid-template-columns:1fr}.calculator-card{padding:14px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+  <script src="./compound-etf-backtest.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon" aria-hidden="true">📈</span><h1 class="brand-title">台股 ETF 歷史回測（上市 ETF）</h1></div>
+    <a class="back-link" href="./">← 返回首頁</a>
+  </header>
+  <main>
+    <section class="calculator-card" aria-label="台股 ETF 歷史回測">
+      <p class="intro">輸入代碼與期間，依證交所歷史收盤價及收益分配資料比較三種策略。依行情註記可辨識的整數分割會自動調整持有單位；其他面額調整仍請人工核對。</p>
+      <form id="etf-backtest-form" class="backtest-form">
+        <label>ETF 代碼<input id="etf-backtest-code" type="text" inputmode="numeric" maxlength="6" value="0050" autocomplete="off" aria-label="上市 ETF 代碼"></label>
+        <label>開始日期<input id="etf-backtest-start" type="date" required></label>
+        <label>結束日期<input id="etf-backtest-end" type="date" required></label>
+        <label>總投入金額（元）<input id="etf-backtest-budget" type="number" min="1" step="1000" value="100000" required></label>
+        <label>買進手續費（%）<input id="etf-backtest-fee" type="number" min="0" max="10" step="0.001" value="0"></label>
+        <label>賣出交易稅（%）<input id="etf-backtest-tax" type="number" min="0" max="10" step="0.01" value="0"></label>
+        <label>定期投入次數<input id="etf-backtest-periods" type="number" min="1" max="120" step="1" value="12"></label>
+        <label>定期投入配息<select id="etf-backtest-dca-reinvest"><option value="yes">再投入</option><option value="no">領現金</option></select></label>
+      </form>
+      <div class="backtest-actions"><button id="etf-backtest-run" class="backtest-button" type="button">開始回測</button><span id="etf-backtest-status" class="backtest-status" aria-live="polite">尚未載入行情。</span></div>
+      <div id="etf-backtest-results" aria-live="polite"></div>
+      <p class="notice">此版本支援證交所上市 ETF。持有單位以小數模擬零股；費用與稅率請依你的實際券商及標的設定。資料直接向證交所讀取，輸入不會保存。</p>
+    </section>
+  </main>
+</body>
+</html>
